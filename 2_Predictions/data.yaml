@@ -1,0 +1,14 @@
+names:
+- Car
+- Vacant
+- parking_spot
+nc: 3
+roboflow:
+  license: Public Domain
+  project: parking_lot-famom
+  url: https://universe.roboflow.com/ptg-g4ygb/parking_lot-famom/dataset/14
+  version: 14
+  workspace: ptg-g4ygb
+test: ../test/images
+train: parking_lot-14/train/images
+val: parking_lot-14/valid/images
