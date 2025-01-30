@@ -1,111 +1,88 @@
-# YOLOv5 Custom Training Guide
+# Parking Slot Detection using YOLO
 
-This guide provides step-by-step instructions for training a YOLOv5 object detection model on a custom dataset using Google Colab or a local environment. For full implementation beyond training, refer to the YouTube video tutorial: [YOLOv5 Training and Inference](https://www.youtube.com/watch?v=mRhQmRm_egc).
+## Overview
+This repository contains a Parking Slot Detection model using the YOLO (You Only Look Once) object detection framework. The model is designed to identify and classify parking slots in images or video streams, helping with automated parking management systems.
 
-## 1. Clone the YOLOv5 Repository
+## Repository Link
+[GitHub Repository](https://github.com/KASHIFANDRABI/Parking-Detection-model)
 
-First, clone the YOLOv5 repository from Ultralytics:
+## Features
+- Real-time parking slot detection using YOLO
+- High accuracy and efficiency
+- Supports video and image inputs
+- Can be integrated with smart parking systems
 
+## Tools & Dependencies
+Ensure you have the following installed:
+- Python 3.x
+- OpenCV
+- YOLOv5 (Ultralytics)
+- TensorFlow/Keras (optional, if needed for additional processing)
+- NumPy
+- Matplotlib (for visualization)
+- CUDA (for GPU acceleration, optional but recommended)
+
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/KASHIFANDRABI/Parking-Detection-model.git
+   cd Parking-Detection-model
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Download YOLO model weights (if not included in the repo):
+   ```bash
+   wget https://github.com/ultralytics/yolov5/releases/download/v6.0/yolov5s.pt
+   ```
+
+## Procedure
+1. **Prepare the Dataset:**
+   - Ensure images/videos contain parking lots.
+   - Annotate parking slots if training a custom model.
+
+2. **Load the YOLO Model:**
+   - Use a pre-trained YOLO model or train a custom model.
+   ```python
+   from ultralytics import YOLO
+   model = YOLO('yolov8n.pt')
+   ```
+
+3. **Run Inference:**
+   - Detect parking slots in an image or video.
+   ```python
+   results = model('test_image.jpg')
+   results.show()
+   ```
+
+4. **Visualize Results:**
+   - Use OpenCV or Matplotlib to display detected parking slots.
+
+5. **Integration:**
+   - Implement the model into a real-world application or smart parking system.
+
+## Usage
+To run detection on an image:
 ```bash
-!git clone https://github.com/ultralytics/yolov5
-%cd yolov5
-!git reset --hard 064365d8683fd002e9ad789c1e91fa3d021b44f0  # Use a stable commit version
+python detect.py --image test_image.jpg
 ```
-
-## 2. Install Dependencies
-
-Ensure all required dependencies are installed:
-
+To run detection on a video:
 ```bash
-!pip install -qr requirements.txt  # Install required packages
+python detect.py --video test_video.mp4
 ```
 
-Import necessary libraries:
+## Future Enhancements
+- Improve accuracy with a custom-trained dataset.
+- Implement real-time detection on edge devices.
+- Deploy as a web or mobile application.
 
-```python
-import torch
-from IPython.display import Image, clear_output
-from utils.downloads import attempt_download  # Download models/datasets
+## Contributing
+Feel free to open issues or pull requests to improve the model and its functionality.
 
-# Check setup
-print('Setup complete. Using torch %s %s' % (torch.__version__, torch.cuda.get_device_properties(0) if torch.cuda.is_available() else 'CPU'))
-```
+## License
+This project is licensed under the MIT License.
 
-## 3. Download and Prepare the Dataset
-
-Use Roboflow to fetch and prepare the dataset:
-
-```bash
-!pip install roboflow
-```
-
-```python
-from roboflow import Roboflow
-rf = Roboflow(api_key="YOUR_API_KEY")
-project = rf.workspace("yollolabel").project("hard-hat-sample-hacx2")
-version = project.version(2)
-dataset = version.download("yolov5")
-```
-
-Verify dataset configuration:
-
-```bash
-%cat {dataset.location}/data.yaml
-```
-
-Extract the number of classes:
-
-```python
-import yaml
-with open(dataset.location + "/data.yaml", 'r') as stream:
-    num_classes = str(yaml.safe_load(stream)['nc'])
-```
-
-## 4. Train the YOLOv5 Model
-
-Train the model for 100 epochs:
-
-```bash
-%cd /content/yolov5/
-!python train.py --img 640 --batch 20 --epochs 100 --data {dataset.location}/data.yaml --cfg ./models/yolov5s.yaml --weights '' --name yolov5s_results --cache
-```
-
-## 5. Evaluate Model Performance
-
-Plot and display training results:
-
-```python
-from utils.plots import plot_results  # Plot results
-Image(filename='/content/yolov5/runs/train/yolov5s_results/results.png', width=1000)
-```
-
-List trained models:
-
-```bash
-%ls runs/train/yolov5s_results/weights
-```
-
-## 6. Model Storage and Downloading Weights
-
-After training, all model results, including logs, metrics, and weights, are stored in:
-
-```bash
-runs/train/yolov5s_results/
-```
-
-The most important file generated is `best.pt`, which contains the optimized model weights. This file is stored in:
-
-```bash
-runs/train/yolov5s_results/weights/best.pt
-```
-
-Before proceeding further, **ensure that you download the **``** folder** from the above directory. This will allow you to use the trained model for inference.
-
-## 7. Further Implementation (Using OpenCV)
-
-For inference using OpenCV and running detections on new images or videos, refer to the detailed steps in the YouTube tutorial: [YOLOv5 Training and Inference](https://www.youtube.com/watch?v=mRhQmRm_egc). The resources in this GitHub repository match the video tutorial for ease of use.
-
-## Conclusion
-
-This guide covers training YOLOv5 on a custom dataset. Before moving forward, ensure you download the `weights` folder. For using the trained model with OpenCV, refer to the video tutorial for further instructions.
+## Contact
+For any queries or collaboration, reach out via [GitHub Issues](https://github.com/KASHIFANDRABI/Parking-Detection-model/issues).
 
