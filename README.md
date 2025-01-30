@@ -23,19 +23,7 @@ Ensure you have the following installed:
 - CUDA (for GPU acceleration, optional but recommended)
 
 ## Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/KASHIFANDRABI/Parking-Detection-model.git
-   cd Parking-Detection-model
-   ```
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Download YOLO model weights (if not included in the repo):
-   ```bash
-   wget https://github.com/ultralytics/yolov5/releases/download/v6.0/yolov5s.pt
-   ```
+The model weights are already present in prediction folder, if you want to train yolo model using custom dataset, follow the procedure and make changes in the notebook provided
 
 ## Procedure
 1. **Train the Model:**
