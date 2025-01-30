@@ -16,7 +16,7 @@ This repository contains a Parking Slot Detection model using the YOLO (You Only
 Ensure you have the following installed:
 - Python 3.x
 - OpenCV
-- YOLOv8 (Ultralytics)
+- YOLOv5 (Ultralytics)
 - TensorFlow/Keras (optional, if needed for additional processing)
 - NumPy
 - Matplotlib (for visualization)
