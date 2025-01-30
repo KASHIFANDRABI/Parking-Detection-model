@@ -16,7 +16,7 @@ This repository contains a Parking Slot Detection model using the YOLO (You Only
 Ensure you have the following installed:
 - Python 3.x
 - OpenCV
-- YOLOv5 (Ultralytics)
+- YOLOv8 (Ultralytics)
 - TensorFlow/Keras (optional, if needed for additional processing)
 - NumPy
 - Matplotlib (for visualization)
@@ -38,22 +38,23 @@ Ensure you have the following installed:
    ```
 
 ## Procedure
-1. **Prepare the Dataset:**
-   - Ensure images/videos contain parking lots.
-   - Annotate parking slots if training a custom model.
-
-2. **Load the YOLO Model:**
-   - Use a pre-trained YOLO model or train a custom model.
-   ```python
-   from ultralytics import YOLO
-   model = YOLO('yolov8n.pt')
+1. **Train the Model:**
+   - Run the provided Jupyter Notebook file to train the model.
+   - Execute the `YOLO_V05_model_Parking.ipynb` file.
+   - Follow the steps to train the model on the dataset.
+   ```bash
+   jupyter notebook YOLO_V05_model_Parking.ipynb
    ```
 
-3. **Run Inference:**
-   - Detect parking slots in an image or video.
-   ```python
-   results = model('test_image.jpg')
-   results.show()
+2. **Download Trained Weights:**
+   - After training, a `weights` folder will be generated.
+   - Download and store the trained weights.
+
+3. **Run Predictions:**
+   - Open the OpenCV notebook present in the `predictions` folder.
+   - Load the trained weights to perform inference.
+   ```bash
+   jupyter notebook predictions/opencv_notebook.ipynb
    ```
 
 4. **Visualize Results:**
@@ -62,15 +63,10 @@ Ensure you have the following installed:
 5. **Integration:**
    - Implement the model into a real-world application or smart parking system.
 
-## Usage
-To run detection on an image:
-```bash
-python detect.py --image test_image.jpg
-```
-To run detection on a video:
-```bash
-python detect.py --video test_video.mp4
-```
+## Reference Video
+For step-by-step guidance, follow this tutorial:
+[YouTube Guide](https://www.youtube.com/watch?v=mRhQmRm_egc)
+
 
 ## Future Enhancements
 - Improve accuracy with a custom-trained dataset.
